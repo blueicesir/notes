@@ -1,3 +1,4 @@
+# File Path /etc/ppp/
 TIMEOUT 15
 ABORT '\nNO CARRIER\r'
 ABORT '\nNO DIALTONE\r'
