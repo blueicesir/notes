@@ -1,0 +1,12 @@
+TIMEOUT 15
+ABORT '\nNO CARRIER\r'
+ABORT '\nNO DIALTONE\r'
+ABORT '\nBUSY\r'
+ABORT '\nERROR\r'
+ABORT '\nNO ANSWER\r'
+
+TIMEOUT         40
+''              \rAT
+OK              AT+CGDCONT=1,"IP","3GNET"
+OK              ATDT*99#
+CONNECT         ''

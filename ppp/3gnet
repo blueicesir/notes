@@ -1,0 +1,17 @@
+/dev/ttyUSB2
+460800
+crtscts
+modem
+noauth
+noipdefault
+defaultroute
+usepeerdns
+nodetach
+ktune
+lock
+maxfail 3
+user '3gnet'
+receive-all
+
+connect '/usr/sbin/chat -s -v -f /etc/ppp/3gnet-start-chat'
+disconnect '/usr/sbin/chat -s -v -f /etc/ppp/3gnet-stop-chat'
