@@ -1,3 +1,4 @@
+#File Path /etc/ppp/peer/3gnet
 /dev/ttyUSB2
 460800
 crtscts
