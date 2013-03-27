@@ -1,10 +1,16 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 
+__version__ = '0.1.20'
+
 import sys
+import os
+import platform
 import logging
 import locale
 import codecs
+import ConfigParser
+import re
 
 import redis.client 
 import redis
@@ -170,16 +176,10 @@ def main():
     sys.stdout=codecs.getwriter(encoding)(sys.stdout,errors="replace")
     sys.stderr=codecs.getwriter(encoding)(sys.stderr,errors="replace")
 
-    if len(sys.argv) < 3:
-        print u"Usage:"
-        print "\t%s JID password" % (sys.argv[0],)
-        print "example:"
-        print "\t%s test@localhost verysecret" %(sys.argv[0],)
-        sys.exit(1)
-
-    print u'创建爱你客户端实例'
-    c=Client(JID(sys.argv[1]),sys.argv[2])
-
+    print u'创建客户端实例'
+#    c=Client(JID(sys.argv[1]),sys.argv[2])
+    ini=ParseIni()
+    c=Client(JID(ini['name']),ini['password'])
     print u'开始连接服务器'
     c.connect()
 
@@ -192,6 +192,15 @@ def main():
 
     print u'退出程序'
 
+
+def ParseIni():
+    ConfigParser.RawConfigParser.OPTCRE = re.compile(r'(?P<option>[^=\s][^=]*)\s*(?P<vi>[=])\s*(?P<value>.*)$')
+    CFG=ConfigParser.ConfigParser()
+    CFG_FILENAME=os.path.splitext(os.path.abspath(__file__))[0]+'.ini'
+    CFG.read(CFG_FILENAME)
+    gtalk_account=CFG.get('gtalk','account')
+    gtalk_password=CFG.get('gtalk','password')
+    return {'name':gtalk_account,'password':gtalk_password}
 
 
 
