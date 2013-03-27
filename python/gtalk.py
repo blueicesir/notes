@@ -72,7 +72,7 @@ class EchoHandler(object):
             print "Redis DB not configuration"
             sys.exit(0)
 
-        client=redis.Redis(host=db_host,port=int(db_port),db=int(db_num),password=db_auth)
+        client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
 
         try:
             body+=(":"+client.get(body).decode('utf-8'))
@@ -215,8 +215,8 @@ def ParseIni():
     gtalk_account=CFG.get('gtalk','account')
     gtalk_password=CFG.get('gtalk','password')
     db_host=CFG.get('redis','host')
-    db_port=CFG.get('redis','port')
-    db_idx=CFG.get('redis','db')
+    db_port=CFG.getint('redis','port')
+    db_idx=CFG.getint('redis','db')
     db_auth=CFG.get('redis','auth')
     return {'name':gtalk_account,'password':gtalk_password,'redis_host':db_host,'redis_port':db_port,'redis_dbid':db_idx,'redis_auth':db_auth}
 
