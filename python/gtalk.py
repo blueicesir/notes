@@ -24,8 +24,9 @@ from pyxmpp.streamtls import TLSSettings
 
 class EchoHandler(object):
     implements(IMessageHandlersProvider, IPresenceHandlersProvider)
-    def __init__(self,client):
+    def __init__(self,client,ini):
         self.client=client
+        self.ini=ini
 
     def get_message_handlers(self):
         return [("normal",self.message)]
@@ -60,7 +61,18 @@ class EchoHandler(object):
         if subject:
             subject=u'Re: '+subject
 
-        client=redis.Redis(host='localhost',port=6336,db=4,password='XShell4')
+
+        if self.ini:
+            db_host=self.ini['redis_host']
+            db_port=self.ini['redis_port']
+            db_num=self.ini['redis_dbid']
+            db_auth=self.ini['redis_auth']
+#            print "Redis DB %s:%s database index %s auth %s" %(db_host,db_port,db_num,db_auth)
+        else:
+            print "Redis DB not configuration"
+            sys.exit(0)
+
+        client=redis.Redis(host=db_host,port=int(db_port),db=int(db_num),password=db_auth)
 
         try:
             body+=(":"+client.get(body).decode('utf-8'))
@@ -136,15 +148,18 @@ class VersionHandler(object):
 
 
 class Client(JabberClient):
-    def __init__(self,jid,password):
+    def __init__(self,jid,password,ini):
         if not jid.resource:
             jid=JID(jid.node,jid.domain,"rbot")
+
+        if ini:
+            self.ini=ini
 
         tls=TLSSettings(require=True,verify_peer=False)
         auth=['sasl:PLAIN']
 
         JabberClient.__init__(self,jid,password,disco_name='rbot',disco_type='bot',tls_settings=tls,auth_methods=auth)
-        self.interface_providers=[VersionHandler(self),EchoHandler(self),]
+        self.interface_providers=[VersionHandler(self),EchoHandler(self,ini),]
 
     def stream_state_changed(self,state,arg):
         print "*** State changed: %s %r ***" % (state,arg)
@@ -177,9 +192,8 @@ def main():
     sys.stderr=codecs.getwriter(encoding)(sys.stderr,errors="replace")
 
     print u'创建客户端实例'
-#    c=Client(JID(sys.argv[1]),sys.argv[2])
     ini=ParseIni()
-    c=Client(JID(ini['name']),ini['password'])
+    c=Client(JID(ini['name']),ini['password'],ini)
     print u'开始连接服务器'
     c.connect()
 
@@ -200,7 +214,11 @@ def ParseIni():
     CFG.read(CFG_FILENAME)
     gtalk_account=CFG.get('gtalk','account')
     gtalk_password=CFG.get('gtalk','password')
-    return {'name':gtalk_account,'password':gtalk_password}
+    db_host=CFG.get('redis','host')
+    db_port=CFG.get('redis','port')
+    db_idx=CFG.get('redis','db')
+    db_auth=CFG.get('redis','auth')
+    return {'name':gtalk_account,'password':gtalk_password,'redis_host':db_host,'redis_port':db_port,'redis_dbid':db_idx,'redis_auth':db_auth}
 
 
 
