@@ -35,9 +35,9 @@ git config --list
 
 Git命令速查表
 ---
-git add 添加至暂存区
-git add-interactive 交互式添加
-git apply 应用补丁
++git add 添加至暂存区
++git add-interactive 交互式添加
++git apply 应用补丁
 git am 应用邮件格式补丁
 git annotate 是git blame的同义词
 git archive 文件归档打包
