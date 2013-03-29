@@ -1,5 +1,7 @@
 # /usr/bin/env ptyhon
 # -*- coding: utf-8 -*-
+# 功能支持Socks5代理
+# source http://xiaoxia.org/2011/03/29/written-by-python-socks5-server/
 
 import socket, sys, select, SocketServer, struct, time  
 
