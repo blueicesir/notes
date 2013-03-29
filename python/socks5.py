@@ -3,22 +3,22 @@
 # 功能支持Socks5代理
 # source http://xiaoxia.org/2011/03/29/written-by-python-socks5-server/
 
-import socket, sys, select, SocketServer, struct, time  
+import socket, sys, select, SocketServer, struct, time
 
-class ThreadingTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer): pass  
-class Socks5Server(SocketServer.StreamRequestHandler):  
-    def handle_tcp(self, sock, remote):  
-        fdset = [sock, remote]  
-        while True:  
-            r, w, e = select.select(fdset, [], [])  
-            if sock in r:  
-                if remote.send(sock.recv(4096)) <= 0: break  
-            if remote in r:  
-                if sock.send(remote.recv(4096)) <= 0: break  
-    def handle(self):  
-        try:  
-            print 'socks connection from ', self.client_address  
-            sock = self.connection  
+class ThreadingTCPServer(SocketServer.ThreadingMixIn, SocketServer.TCPServer): pass
+class Socks5Server(SocketServer.StreamRequestHandler):
+    def handle_tcp(self, sock, remote):
+        fdset = [sock, remote]
+        while True:
+            r, w, e = select.select(fdset, [], []) # 轮询检查是否有事件，需要处理
+            if sock in r: # 是否有数据需要读取
+                if remote.send(sock.recv(4096)) <= 0: break # 如果读取数据失败
+            if remote in r:
+                if sock.send(remote.recv(4096)) <= 0: break # 远端是否有数据需要读取
+    def handle(self):
+        try:
+            print 'socks connection from ', self.client_address
+            sock = self.connection
             # 1. Version
             sock.recv(262)
             sock.send(b"\x05\x00"); # Socks5协议头
@@ -45,7 +45,7 @@ class Socks5Server(SocketServer.StreamRequestHandler):
                 # Connection refused
                 reply = '\x05\x05\x00\x01\x00\x00\x00\x00\x00\x00'
             sock.send(reply)
-            # 3. Transfering  
+            # 3. Transfering
             if reply[1] == '\x00':  # Success
                 if mode == 1:    # 1. Tcp connect
                     self.handle_tcp(sock, remote)
