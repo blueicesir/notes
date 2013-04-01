@@ -55,6 +55,10 @@ class EchoHandler(object):
             print u'类型:"正常"'
 
 
+        if t=="chat" and body==None:
+            return True
+
+
         if stanza.get_type()=='headline':
             return True
 
