@@ -219,13 +219,13 @@ git add .
 
 ##如果是自己的项目之前采用的只读方式clone的，想切换到非只读模式修改配置即可
 ### 查看配置
-git config --list
-修改[remote]中的remote.origin.url条目
-只读模式是
-remote.origin.url=git://github.com/blueicesir/utils.git
-修改为
-remote.origin.url=git@github.com:blueicesir/utils.git
-之后就可以使用git push进行更新了。
-只读模式需要写完整的
-git push git@github.com:blueicesir/utils.git
+> git config --list
+> 修改[remote]中的remote.origin.url条目
+> 只读模式是
+> remote.origin.url=git://github.com/blueicesir/utils.git
+> 修改为
+> remote.origin.url=git@github.com:blueicesir/utils.git
+> 之后就可以使用git push进行更新了。
+> 只读模式需要写完整的
+> git push git@github.com:blueicesir/utils.git
 
