@@ -219,6 +219,8 @@ git add .
 
 ##如果是自己的项目之前采用的只读方式clone的，想切换到非只读模式修改配置即可
 ### 查看配置
+#### 默认git config -e会调用nano编辑器，如果需指定编辑器需呀设置环境变量，这个设置对crontab -e也生效
+* export EDITOR=vim
 * git config --list
 * 修改[remote]中的remote.origin.url条目
 * 只读模式是
