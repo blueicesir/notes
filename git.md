@@ -156,3 +156,62 @@ git remote add origin git@xxx:project2.git
 git push origin master
 
 git pull
+
+
+
+
+# Gitosis安装
+sudo apt-get install -y gitcore
+git clone git://github.com/res0nat0r/gitosis.git
+cd gitosis
+sudo python setup.py install
+
+## 创建git用户，所有的仓库都存放在git用户名下
+sudo adduser --shell /bin/bash --home /home/git git
+### 在git用户下生成密钥，不输入密码
+ssh-keygen -t rsa
+初始化gitosis套件
+sudo -H -u gitosis gitosis-init < id_dsa.pub
+
+### 修改gitosis设置
+git clone git@gitserver:/home/git/repositories/gitosis-admin.git
+克隆系统设置
+
+### 也可以使用其它主机上行的账号进行此操作，但需要设置用户名
+git config --global user.name git
+## 复制客户机的id_rsa.pub到git服务器的git用户下的~/.ssh/authorized_keys中，这样可以免密码登陆
+## 测试免密码登陆使用ssh git@gitserver测试即可。
+
+## Gitosis会在系统root账户下创建一个gitosis-admin目录其中存放keydir登陆
+
+## Gitosis真实的项目文件存放地点
+/home/git/repositories/
+如果需要新增项目，则
+cd /home/git/repositories
+mkdir ent-sms.git
+cd ent-sms.git
+git init
+touch readme.md
+git add .
+git commit -a -m "Initialize Repo..."
+
+
+## 然后到客户机
+git clone git@gitserver:/home/git/repositories/ent-sms.git
+就克隆到本地了，
+然后你可以把已经存在的项目拷贝过来然后
+git add .
+即可
+
+
+## 新增项目
+### 新增仓库需要在服务器操作，并设置gitosis-admin中设置
+# Gitosis用户必须使用完整路径否则会提示找不到仓库
+在blueice用户下，而仓库在git@raspberrypi的真实路径下,配置这个用户名必须是git主机的有效用户名
+git config --global user.name blueice
+git config --global user.email "blueicesir@gmail.com"
+
+
+
+git clone git@raspberrypi:/home/git/repositories/gitosis-admin.git
+
