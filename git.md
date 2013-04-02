@@ -145,3 +145,14 @@ Git命令速查表
 * git var 显示Git环境变量
 * git diff-tree
 
+
+
+# 设置Git用户
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+
+git commit -a -m 'init project2'
+git remote add origin git@xxx:project2.git
+git push origin master
+
+git pull
