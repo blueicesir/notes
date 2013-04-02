@@ -214,6 +214,34 @@ git add .
 
 
 * git clone git@raspberrypi:/home/git/repositories/gitosis-admin.git
+* 把远程配置同步到本地之后，把你需要增加的id_rsa.pub文件复制到keydir目录中，重名名为git主机上的用户名例如pi@raspberrypi.pub
+* git add .
+* git commit -a -m "add pi@raspberrypi.pub"
+* git push
+* 这样gitosis后台会自动增加你新增的公钥到git用户目录~/.ssh/authorized_keys中，格式是特定的！
+* 如果要授权某个用户访问特定的项目需要修改gitosis-admin目录下的gitosis.conf配置文件
+* 新增仓库
+[group newrepo]
+writable = 你的项目名称，在/home/git/repositories/目录下，目录需要有.git后缀，而项目名称这里不需要.git后缀
+members = 这里就是你的keydir目录中的除去.pub的文件名，例如如果存在pi@raspberrypi.pub目录，这里就写pi@raspberrypi，多个用户使用空格分隔
+
+
+* 例如我的仓库名称是 ent-sms，相关命令如下：
+mkdir /home/git/repositories/ent-sms.git
+cd /home/git/repositories/ent-sms.git
+git init
+touch readme.md
+echo "Hello" > raedme.md
+git add .
+git commit -a -m "initialize"
+
+* 在客户机上
+git clone git@raspberrypi:/home/git/repositories/ent-sms.git
+
+gitosis-admin.git配置参考如下：
+[group ent-sms]
+writable = ent-sms
+writable = pi@raspberrypi blueice@raspberrypi
 
 
 
@@ -230,4 +258,6 @@ git add .
 * 之后就可以使用git push进行更新了。
 * 只读模式需要写完整的
 * git push git@github.com:blueicesir/utils.git
+
+
 
