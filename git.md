@@ -207,11 +207,11 @@ git add .
 ## 新增项目
 ### 新增仓库需要在服务器操作，并设置gitosis-admin中设置
 # Gitosis用户必须使用完整路径否则会提示找不到仓库
-在blueice用户下，而仓库在git@raspberrypi的真实路径下,配置这个用户名必须是git主机的有效用户名
-git config --global user.name blueice
-git config --global user.email "blueicesir@gmail.com"
+* 在blueice用户下，而仓库在git@raspberrypi的真实路径下,配置这个用户名必须是git主机的有效用户名
+* git config --global user.name blueice
+* git config --global user.email "blueicesir@gmail.com"
 
 
 
-git clone git@raspberrypi:/home/git/repositories/gitosis-admin.git
+* git clone git@raspberrypi:/home/git/repositories/gitosis-admin.git
 
