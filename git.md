@@ -290,3 +290,8 @@ Git命令手札
 * git stash save [message] 保存当前工作进度
 * git stash list 查看已经保存的工作进度
 * git stash apply [--index] [stash] 恢复指定的工作进度
+* git stash pop [--index] [stash] 恢复指定的工作进度，并从进度列表中删除
+* git stash drop [stash] 删除一个存储的工作
+* git stash clear 删除所有存储的进度
+
+
