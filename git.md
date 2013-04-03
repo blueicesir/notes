@@ -260,4 +260,22 @@ writable = pi@raspberrypi blueice@raspberrypi
 * git push git@github.com:blueicesir/utils.git
 
 
+---
+Git命令手札
+* git reset --hard 重置当前branch
+* git checkout 只会改变HEAD，不会改变影响当前branch
+
+* 对特定文件忽略不添加和提交到版本库中
+* .gitignore 这个文件会push到服务器上
+* .git/info/exclude 这个完全工作在本地，不会被push到服务器上
+
+* git config --global core.autocrlf true 版本库中使用LF，检出时使用CRLF
+* git config --global core.autocrlf input 检出时使用LF
+
+* git revert 不会改变历史，而是生成一个新的commit来反转指定的commit中的change
+* git reset -- filename 用于使用HEAD中的filename覆盖index中的新版本
+* git branch -D master 无法删除当前所在分支
+* git ls-files -s 显示当前staged的object的状态
+
+
 
