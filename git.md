@@ -278,4 +278,15 @@ Git命令手札
 * git ls-files -s 显示当前staged的object的状态
 
 
+## 忽略版本库中的文件，且不被版本库提交的内容显示.gitignore这个无法满足
+* 在版本库目录中存在一个.git/info/exclude文件，把需要不添加到版本库的文件加入到这个文件即可，这样git push不会有任何信息提交到版本库中。
 
+## 对于已经git add添加之后的文件需要忽略，则使用
+* git update-index --assume-unchanged -- path/to/file 启用忽略
+* git update-index --no-assume-unchanged -- path/to/file 停用忽略
+
+
+## 不想提交直接checkout到其它branch
+* git stash save [message] 保存当前工作进度
+* git stash list 查看已经保存的工作进度
+* git stash apply [--index] [stash] 恢复指定的工作进度
