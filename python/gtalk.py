@@ -79,12 +79,12 @@ class EchoHandler(object):
 
 
         try:
-            cmd=body
-            regexp=re.compile('(get|keys)\s(.*)',re.I)
+            cmd=body.lower()    # 转换为小写
+            regexp=re.compile('(get|keys)\s(.*)',re.I)  # 正则匹配不区分大小写
             key=regexp.match(body)  # 由于直接访问group(2)，如果成员不存在会抛出异常
             if key:
                 key=key.group(2)
-                db_num=6
+                db_num=6    # 设置数据库
 
             if cmd.startswith('get'):
                 client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
