@@ -99,8 +99,11 @@ class EchoHandler(object):
                 client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
                 if key:
                     body=client.keys(key)
-                    ret="\r".join(body)
-                    body=ret
+                    if len(body)!=0:
+                        ret="\r".join(body)
+                        body=ret
+                    else:
+                        body="key is not exists."
                 else:
                     body="keys execute fail"
             else:
