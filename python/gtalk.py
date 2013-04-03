@@ -11,6 +11,7 @@ import locale
 import codecs
 import ConfigParser
 import re
+import string
 
 import redis.client 
 import redis
@@ -76,11 +77,38 @@ class EchoHandler(object):
             print "Redis DB not configuration"
             sys.exit(0)
 
-        client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
 
         try:
-            body+=(":"+client.get(body).decode('utf-8'))
-        except Exception,e:
+            cmd=body
+            regexp=re.compile('(get|keys)\s(.*)',re.I)
+            key=regexp.match(body)  # 由于直接访问group(2)，如果成员不存在会抛出异常
+            if key:
+                key=key.group(2)
+                db_num=6
+
+            if cmd.startswith('get'):
+                client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
+                if key:
+                    if client.exists(key):
+                        body=client.get(key)
+                    else:
+                        body="get key not exists."
+                else:
+                    body="get execute fail"
+            elif cmd.startswith('keys'):
+                client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
+                if key:
+                    body=client.keys(key)
+                    ret="\r".join(body)
+                    body=ret
+                else:
+                    body="keys execute fail"
+            else:
+                print 'search chinese name'
+                db_num=4
+                client=redis.Redis(host=db_host,port=db_port,db=db_num,password=db_auth)
+                body+=(":"+client.get(body).decode('utf-8'))
+        except Exception,e: # 这种写法是不安全的，这样会淹没所有try到except中的异常，而且看不到那里出现的错误。
             body=u'您查询的"%s"无记录。' % (body,)
 
         m=Message(

@@ -294,4 +294,8 @@ Git命令手札
 * git stash drop [stash] 删除一个存储的工作
 * git stash clear 删除所有存储的进度
 
+## git filter-branch命令
+* git filter-branch --tree-filter 'rm filename' HEAD 把filename指定的文件从历史中永久删除
+* git filter-branch --index-filter 'git rm --cached --ignore-unmatch filename' HEAD
+
 
