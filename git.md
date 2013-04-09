@@ -297,4 +297,11 @@ Git命令手札
 * git filter-branch --tree-filter 'rm filename' HEAD 把filename指定的文件从历史中永久删除
 * git filter-branch --index-filter 'git rm --cached --ignore-unmatch filename' HEAD
 
+## 删除了git仓库中的文件的恢复，前提是没有commit
+* git rm learn_python.md # 这样实际上会删除磁盘上的物理文件
+* git reset # 前提是没有commmit操作，这样文件会在存储区恢复回来，但实际上物理磁盘文件还没有
+* git checkout -- learn_python.md # 把文件还原到磁盘上
+* git mv learn_python.md python_tutorial.md # 修改文件名
+* git commit -a -m "rename something file"
+* git push # 推送到远端仓库
 
