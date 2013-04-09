@@ -460,6 +460,28 @@ lambda只能用于表达式，因此print也不能用于lambda中。
 
 
 
+def make_repeater(n):
+    return lambda s: s+n
+
+
+## exec和eval用来执行存储在字符串或文件中的Python语句。
+exec 'print "Hello"'
+eval('2*3')
+
+
+## assert在表达式非真是引发一个错误，异常位AssertionError
+mylist=['item']
+assert len(mylist)>=1
+mylist.pop()
+assert len(mylist)>=1
+
+## repr函数取得对象的规范字符串表示
+eval(repr(object))==object
+
+i=[]
+i.append('item')
+repr(i) # 返回对象的字符串表达式
+
 
 
 
