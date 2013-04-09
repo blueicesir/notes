@@ -305,3 +305,8 @@ Git命令手札
 * git commit -a -m "rename something file"
 * git push # 推送到远端仓库
 
+
+## 同步本地已经存在的仓库版本到最新的远端仓库
+* git fetch
+* git pull
+
