@@ -1,13 +1,13 @@
 # Git常用命令
 ---
 ### 创建Git仓库
-::[ git init ]::
+git init
 
 ### 添加远端仓库
-::[ git remote add origin git@github.com:blueicesir/utils.git ]::
+git remote add origin git@github.com:blueicesir/utils.git
 
 ### 查看远端分支
-:: git branch -r ::
+git branch -r
 
 ### 查看所有分支
 git branch -a
