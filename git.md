@@ -310,3 +310,16 @@ Git命令手札
 * git fetch
 * git pull
 
+
+## Git同步是删除本地有但远端已经删除的分支
+* git fetch --prune # 在本地删除远端已经不存在的分支
+
+## 删除本地所有tag
+* git tag -l | xargs git tag -d
+
+## 查询远端heads和tags命令
+* git ls-remote --heads origin
+* git ls-remote --tags origin
+* git ls-remote origin
+
+
