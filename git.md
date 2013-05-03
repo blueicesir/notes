@@ -322,4 +322,9 @@ Git命令手札
 * git ls-remote --tags origin
 * git ls-remote origin
 
+## 丢弃本地仓库并同步远端所有内容到本地
+* git fetch origin
+* git reset --hard origin/master
 
+## 恢复尚没有提交到HEAD的单个文件。
+* git checkout -- <filename>
