@@ -28,3 +28,5 @@ make
 * getTemp.ini中配置yeelink的开发者API和DEVICE_ID以及SENSOR_ID。
 * 支持写本地sqlite3数据库，以便使用类似RRDTools这样的图表工具重建可视化曲线图。
 
+
+## 注意:这个目录下的pcsensor是在RaspberryPi设备上编译的，不适合x86平台。需要请自行编译！
