@@ -328,3 +328,9 @@ Git命令手札
 
 ## 恢复尚没有提交到HEAD的单个文件。
 * git checkout -- <filename>
+
+
+## 删除已经提交过的文件
+* git rm -rf --cached c/pcsensor-0.0.1/*.un~
+* 需要查找特定扩展名的文件使用
+* git ls-files
