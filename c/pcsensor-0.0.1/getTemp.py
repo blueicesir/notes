@@ -12,10 +12,28 @@ import re
 import sqlite3
 import json
 
+import prowlpy
+
+
 if sys.version[0]=='2':
     import ConfigParser
 else:
     import configparser as ConfigParser
+
+def iOSPushMsg(apikey,json_str,top_level):
+    c1=float(json_decode(json_str)['c'])
+    print "[%s]-> iOS PushMsg input c=%f"%(getTime(),c1,)
+    if float(c1)<float(top_level):
+        return None
+    else:
+        print "[%s]-> Call iOSPushMsg to Prowl"%(getTime(),)
+    p=prowlpy.Prowl(apikey)
+    try:
+        p.add(u'温度告警',u'Warning',"Content", 1, None, "http://www.yeelink.net/devices/3291/")
+        return True
+    except Exception,msg:
+        print "[%s]-> iOSPushMsg Except:%s"%(getTime(),msg,)
+        return None
 
 def warning_rpc(enable,warn_uri,json_str,warn_level,warn_addr):
     if int(enable)==0:
@@ -54,8 +72,12 @@ def post_data(json):
     warning_uri=CONFIG.get('warning','uri')
     warning_addr=CONFIG.get('warning','addr')
 
+    prowl_apikey=CONFIG.get('prowl','apikey')
+
     log_localdb(sqlite_file,sqlite_table,json)
     warning_rpc(warning_enable,warning_uri,json,warning_eq_max,warning_addr)
+    iOSPushMsg(prowl_apikey,json,warning_eq_max)
+
 
     device_id=CONFIG.get('device','id')
     sensor_id=CONFIG.get('sensor','id')
