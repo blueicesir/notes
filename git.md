@@ -334,3 +334,18 @@ Git命令手札
 * git rm -rf --cached c/pcsensor-0.0.1/*.un~
 * 需要查找特定扩展名的文件使用
 * git ls-files
+
+
+
+
+## 重新配置Git之后访问Github
+* FreeBSD 编译git
+* cd /usr/ports/devel/git
+* make install clean
+** 经过漫长的等待，因为在RaspberryPi上编译我的陆陆续续接近三天，因为有些make config界面会停留。
+1. 生成新的公钥，并上传到Github中ssh-keygen -t rsa -c "BlueICESir@gmail.com"
+2. 上传之后登陆Github.com你的账号下把~/.ssh/id_rsa.pub文件中的内容复制到到add ssh key中，点击添加。
+3. 在本端git clone git@github.com:blueicesir/atsms把项目取出来
+4. 配置相关信息git config --global user.email "blueicesir@gmail.com"
+5. 配置相关信息git config --global user.name blueicesir
+6. 在相关Git Response下做测试，修改一个文件之后git add README.md，git commit -a -m "comment text information"，git push
