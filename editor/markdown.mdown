@@ -1,0 +1,108 @@
+Title 1（无下划线）
+==============
+
+Title 2(有下划线)
+--------------
+
+# 这是H1
+
+## 这是H2
+
+### 这是H3 ###
+
+###### 这是H6
+
+>区块引用(Blockquotes)
+>Markdown blockquote with two.
+
+> This is the first level of quoting.
+>
+>> This is nested blockquote.
+>
+> Back to the first level.
+
+> ## 引用中的标题
+>
+> 1.则是第一
+> 2.则是第二
+
+
+列表 *
+---------
+* Red
+* Green
+* Blue
+
+列表 -
+----------
+- Red
+- Green
+- Blue
+
+有序列表，数字接着一个英文句号,就算数组不是递增，也会顺序
+--------------------------
+1. Bird
+2. McHale
+3. Parish
+
+
+> 如果列表项目间用空行分开，在输出HTML时Markdown就会将项目内容用<p>标签包起来
+---------------
+*  Bird
+*  Magic
+
+* Bird
+
+
+* Magic
+
+
+会被转换为
+> <ul>
+> <li><p>Bird</p></li>
+> <li><p>Magic</p></li>
+> </ul>
+
+如果要在列表项目内放进引用，需要>就需要缩进
+* A List item with a blockquote:
+  > This is a blockquote
+  > inside a list item.
+
+* 每行一阶缩进（4个空格或是1个制表符），都会被移除。
+
+分割线
+================
+>可以在一行中使用三个以上的星号、减号、底线来建立一个分割线。行内不能有其他东西。
+* * *
+***
+********
+- - -
+----------------
+
+区段元素
+=====================
+行内式链接
+This is [an example](http://example.com/ "Title") inline link.
+
+[显示给用户的文字](这里实际上就是链接，需要增加Title就使用“提示文字”)。
+
+相对路径
+See my [About](/about/) page for details.
+
+场考式链接
+This is [an example][id] reference-style link.
+两个方括号中间加上一个空格
+This is [an example] [id] reference-style link.
+
+标记出来的地方
+[id]: http://example.com/ "Optional Title Here"
+
+
+[Google]: http://google.com/
+
+
+参考样式链接范例：
+=================
+[1]: http://google.com/ "Google"
+[2]: http://search.yahoo.com/ "Yahoo Search"
+[3]: http:/search.msn.com/ "MSN Search"
