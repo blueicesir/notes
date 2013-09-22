@@ -100,7 +100,7 @@ Git命令速查表
 * git name-rev 将提交ID显示未友好名称
 * git peek-remote* 废弃的命令，被git ls-remote替代
 * git rev-list 显示版本范围
-* git show-branch 侠士分支列表及拓扑关系
+* git show-branch  显示分支列表及拓扑关系
 * git show-ref 显示本地引用
 * git symbolic-ref 显示或者设置符号引用
 * git update-ref 更新引用的指向
@@ -128,7 +128,7 @@ Git命令速查表
 * git daemon 启动后台守护进程
 * git http-backend 创建HTTP协议的CGI守护程序
 * git instaweb 即时启动浏览器通过gitweb浏览当前版本库
-* git shell 收限制的shell,提供仅执行git命令的ssh访问
+* git shell 受ß限制的shell,提供仅执行git命令的ssh访问
 * git update-server-info 显示协议需要的辅助文件
 * git http-fetch 通过HTTP协议获取版本库
 * git http-push 通过HTTP/DAV协议推送
