@@ -302,7 +302,7 @@ Git命令手札
 * git reset # 前提是没有commmit操作，这样文件会在存储区恢复回来，但实际上物理磁盘文件还没有
 * git checkout -- learn_python.md # 把文件还原到磁盘上
 * git mv learn_python.md python_tutorial.md # 修改文件名
-* git commit -a -m "rename something file"
+* git commit -a -m "rename something file" # 确认修改并提交到本地
 * git push # 推送到远端仓库
 
 
@@ -311,7 +311,7 @@ Git命令手札
 * git pull
 
 
-## Git同步是删除本地有但远端已经删除的分支
+## Git同步时删除本地有但远端已经删除的分支
 * git fetch --prune # 在本地删除远端已经不存在的分支
 
 ## 删除本地所有tag
