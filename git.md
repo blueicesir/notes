@@ -13,9 +13,8 @@ git branch -r
 git branch -a
 
 ### 确保在本地master分支，并提交修改到HEAD中
-git checkout master
-
-git commit -a -m "注释信息"
+* git checkout master
+* git commit -a -m "注释信息"
 
 ### 提交本地分支master到远端仓库
 git push git@github.com:blueicesir/utils.git master
@@ -49,14 +48,14 @@ Git命令速查表
 * git checkout 检出到工作区、切换或创建分支,git checkout -b newbranch检出并创建新的分支
 * git cherry-pick 提交拣选
 * git citool 图形化提交，等同于git gui
-* git clean 清楚工作区未跟踪文件
+* git clean 清除工作区未跟踪文件
 * git clone 克隆版本库
 * git commit 提交
 * git config 查询和修改配置（设置全局用户名以及查看配置）
 * git describe 通过里程碑直观显示提交ID
 * git diff 差异比较
 * git difftool 图像化工具比较差异
-* git fetch 获取远程版本库的提交
+* git fetch 获取远程版本库的提交(*同步本地版本到远端最新版本)
 * git format-patch 创建邮件格式的补丁文件
 * git grep 文件内容搜索定位工具
 * git gui 基于Tcl/Tk的图形化工具，侧重提交等操作
