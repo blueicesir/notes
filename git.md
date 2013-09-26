@@ -159,6 +159,7 @@ Git命令速查表
 
 
 # 搭建和Github类似的版本库控制系统
+# Gitosis系统本身的帐号权限控制也使用git进行管理，例如新增用户后也使用git checkout,git push进行提交
 # Gitosis安装
 > + sudo apt-get install -y gitcore
 > + git clone git://github.com/res0nat0r/gitosis.git
@@ -184,15 +185,15 @@ git config --global user.name git
 ## Gitosis会在系统root账户下创建一个gitosis-admin目录其中存放keydir登陆
 
 ## Gitosis真实的项目文件存放地点
-/home/git/repositories/
+1. /home/git/repositories/
 如果需要新增项目，则
-cd /home/git/repositories
-mkdir ent-sms.git
-cd ent-sms.git
-git init
-touch readme.md
-git add .
-git commit -a -m "Initialize Repo..."
+2. cd /home/git/repositories
+3. mkdir ent-sms.git
+4. cd ent-sms.git
+5. git init
+6. touch readme.md
+7. git add .
+8. git commit -a -m "Initialize Repo..."
 
 
 ## 然后到客户机
