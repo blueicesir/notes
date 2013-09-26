@@ -14,6 +14,7 @@ git branch -a
 
 ### 确保在本地master分支，并提交修改到HEAD中
 git checkout master
+
 git commit -a -m "注释信息"
 
 ### 提交本地分支master到远端仓库
@@ -21,6 +22,7 @@ git push git@github.com:blueicesir/utils.git master
 
 ### 从远端仓库获取最新版本,如果省略origin默认是远端仓库
 git fetch origin
+
 git reset --hard origin/master 使用远端origin分支作为本地的master分支
 
 ### 本地仓库分支与远端同步
