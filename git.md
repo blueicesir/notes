@@ -1,7 +1,7 @@
 # Git常用命令
 ---
 ### 创建Git仓库
-git init
+git init （git init-db*是其同义词）
 
 ### 添加远端仓库
 git remote add origin git@github.com:blueicesir/utils.git
@@ -20,15 +20,14 @@ git branch -a
 git push git@github.com:blueicesir/utils.git master
 
 ### 从远端仓库获取最新版本,如果省略origin默认是远端仓库
-git fetch origin
-
-git reset --hard origin/master 使用远端origin分支作为本地的master分支
+* git fetch origin
+* git reset --hard origin/master 使用远端origin分支作为本地的master分支，作用是可以恢复删除的本地修改
 
 ### 本地仓库分支与远端同步
-git pull
+git pull （远端->本端，和git push的方向相反）
 
 
-### 显示配置
+### 显示配置（现实远端仓库以及帐号等信息）
 git config --list
 
 ---
@@ -73,7 +72,7 @@ Git命令速查表
 * git reflog 分支等引用变更记录管理
 * git remote 远程版本库管理
 * git repo-config* git config 同义词
-* git reset 重置改变分支指向git reset --hard origin/master,把本地master分支重置和origin一样。--hard是硬的不是连接方式，就是复制方式
+* git reset 重置改变分支指向git reset --hard origin/master,把本地master分支重置和origin一样。--hard是指硬的复制方式，而非链接方式
 * git rev-parse 将各种引用表示法转换为哈希值等
 * git revert 反转提交
 * git rm 删除文件
@@ -85,7 +84,7 @@ Git命令速查表
 ### 对象库操作相关命令
 * git commit-tree 从树对象创建提交
 * git hash-object 从标准输入或文件计算哈希值或创建对象
-* git ls-files 显示工作区和暂存区文件
+* git ls-files 显示工作区和暂存区文件（查看仓库中的文件以及路径）
 * git ls-tree 显示数对象包含的文件
 * git mktag 从标注输入创建一个标签（里程碑对象）
 * git mktree 从标注你输入创建一个树对象
@@ -96,7 +95,7 @@ Git命令速查表
 
 ### 应用操作相关命令
 * git check-ref-format 检查引用名称是否符合规范
-* git for-each-ref 引用迭代器，用于Shell编程
+* git for-each-ref 引用迭代器，用于Shell编程时返回提交id给脚本使用
 * git ls-remote 显示远程版本库的引用
 * git name-rev 将提交ID显示未友好名称
 * git peek-remote* 废弃的命令，被git ls-remote替代
@@ -112,7 +111,7 @@ Git命令速查表
 * git filter-branch 版本库重构
 * git fsck 对象库完整性检查
 * git gc 版本库存储优化
-* git index-pack 从打包文件创建爱你对应的索引文件
+* git index-pack 从打包文件创建对应的索引文件
 * git lost-found* 废弃命令，被git fsck --lost-found替代
 * git pack-objects 从标注你输入读取对象ID，打包到文件
 * git pack-redundant 查找多余的pack文件
@@ -148,14 +147,14 @@ Git命令速查表
 
 
 # 设置Git用户
-git config --global user.email "you@example.com"
-git config --global user.name "Your Name"
+* git config --global user.email "you@example.com"
+* git config --global user.name "Your Name"
 
-git commit -a -m 'init project2'
-git remote add origin git@xxx:project2.git
-git push origin master
+* git commit -a -m 'init project2'
+* git remote add origin git@xxx:project2.git
+* git push origin master
 
-git pull
+* git pull
 
 
 
