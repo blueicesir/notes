@@ -160,10 +160,10 @@ Git命令速查表
 
 # 搭建和Github类似的版本库控制系统
 # Gitosis安装
-> * sudo apt-get install -y gitcore
-> * git clone git://github.com/res0nat0r/gitosis.git
-> * cd gitosis
-> * sudo python setup.py install
+> + sudo apt-get install -y gitcore
+> + git clone git://github.com/res0nat0r/gitosis.git
+> + cd gitosis
+> + sudo python setup.py install
 
 ## 创建git用户，所有的仓库都存放在git用户名下
 sudo adduser --shell /bin/bash --home /home/git git
